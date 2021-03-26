@@ -47,9 +47,14 @@ interface CommonOptions {
    */
   sig?: string;
 }
+/**
+ * 位置坐标
+ */
+export type Location = string | { latitude: number; longitude: number };
 
-type Location = string | { latitude: string; longitude: string };
-
+/**
+ * 返回结果的位置坐标
+ */
 export interface ResultLocation {
   /**
    * 纬度
@@ -360,6 +365,40 @@ export interface GetSuggestionOptions extends CommonOptions {
 }
 
 /**
+ * 逆地址解析 位置信息
+ */
+export interface ReverseGeocoderAdInfo {
+  /**
+   * 行政区划代码
+   */
+  adcode: string;
+  /**
+   * 行政区划名称
+   */
+  name: string;
+  /**
+   * 行政区划中心点坐标
+   */
+  location: ResultLocation;
+  /**
+   * 国家
+   */
+  nation: string;
+  /**
+   * 省 / 直辖市
+   */
+  province: string;
+  /**
+   * 市 / 地级区 及同级行政区划
+   */
+  city: string;
+  /**
+   * 区 / 县级市 及同级行政区划
+   */
+  district?: string;
+}
+
+/**
  * 逆地址解析 success result
  */
 export interface ReverseGeocoderSuccessResult extends CommonResult {
@@ -419,36 +458,7 @@ export interface ReverseGeocoderSuccessResult extends CommonResult {
     /**
      * 地址信息
      */
-    ad_info: {
-      /**
-       * 行政区划代码
-       */
-      adcode: string;
-      /**
-       * 行政区划名称
-       */
-      name: string;
-      /**
-       * 行政区划中心点坐标
-       */
-      location: ResultLocation;
-      /**
-       * 国家
-       */
-      nation: string;
-      /**
-       * 省 / 直辖市
-       */
-      province: string;
-      /**
-       * 市 / 地级区 及同级行政区划
-       */
-      city: string;
-      /**
-       * 区 / 县级市 及同级行政区划
-       */
-      district?: string;
-    };
+    ad_info: ReverseGeocoderAdInfo;
 
     /**
      * 坐标相对位置参考
