@@ -17,6 +17,7 @@ import QQMapWX from "@jonny1994/qqmap-wx-jssdk";
 
 qqmapsdk = new QQMapWX({
   key: "申请的key",
+  useGetFuzzyLocation: true // 使用 `wx.getFuzzyLocation` 替换 `wx.getLocation`
 });
 ```
 

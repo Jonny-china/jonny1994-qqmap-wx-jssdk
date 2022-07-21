@@ -28,6 +28,9 @@ var MODE = {
   transit: 'transit'
 };
 var EARTH_RADIUS = 6378136.49;
+
+var USE_GET_FUZZY_LOCATION = false
+
 var Utils = {
   /**
   * md5加密方法
@@ -339,12 +342,21 @@ var Utils = {
      * 使用微信接口进行定位
      */
     getWXLocation(success, fail, complete) {
-        wx.getLocation({
-            type: 'gcj02',
-            success: success,
-            fail: fail,
-            complete: complete
+      if (USE_GET_FUZZY_LOCATION) {
+        wx.getFuzzyLocation({
+          type: 'gcj02',
+          success: success,
+          fail: fail,
+          complete: complete
         });
+      } else {
+        wx.getLocation({
+          type: 'gcj02',
+          success: success,
+          fail: fail,
+          complete: complete
+        });
+      }
     },
 
     /**
@@ -663,6 +675,7 @@ class QQMapWX {
         if (!options.key) {
             throw Error('key值不能为空');
         }
+        USE_GET_FUZZY_LOCATION = options.useGetFuzzyLocation || false
         this.key = options.key;
     };
 
