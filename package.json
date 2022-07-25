@@ -1,6 +1,6 @@
 {
   "name": "@jonny1994/qqmap-wx-jssdk",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "微信小程序 腾讯地图sdk v1.2",
   "main": "qqmap-wx-jssdk.js",
   "author": "Jonny Chen",
